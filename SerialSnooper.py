@@ -57,11 +57,12 @@ class DataReader:
         try:
             gForceZ = float(self.lastInput[0])
             rotY = float(self.lastInput[1][:-3])
+            self.state = 2
         except:
             return
 
         self.accellOffset = rotY
-        print(self.accellOffset);
+        print(self.accellOffset)
 
     def updateState(self):
         if not self.enabled:
@@ -106,7 +107,7 @@ class DataReader:
         while 1:
             if self.state is 0:
                 win32api.keybd_event(0x25, 0, 0, 0)
-                # win32api.keybd_event(0x25, 0, win32con.KEYEVENTF_KEYUP, 0)
+                # win32api.keybd_evenat(0x25, 0, win32con.KEYEVENTF_KEYUP, 0)
             if self.state is 1:
                 win32api.keybd_event(0x27, 0, 0, 0)
                 # win32api.keybd_event(0x27, 0, win32con.KEYEVENTF_KEYUP, 0)
@@ -120,5 +121,3 @@ class DataReader:
         win32api.keybd_event(0x25, 0, win32con.KEYEVENTF_KEYUP, 0)
         win32api.keybd_event(0x27, 0, win32con.KEYEVENTF_KEYUP, 0)
         print(self.enabled)
-
-

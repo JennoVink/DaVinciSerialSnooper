@@ -27,9 +27,9 @@ class MainScreen(GridLayout):
         self.add_widget(self.enableButton)
 
         # self.cols = 2
-        sensitivityLabel = Label(text='Sensitivity (now: 10')
+        sensitivityLabel = Label(text='Sensitivity (now: 40')
         self.add_widget(sensitivityLabel)
-        self.sensitivitySlider = Slider(value_track=True, value=10, min=0.5, max=80, value_track_color=[1, 0, 0, 1])
+        self.sensitivitySlider = Slider(value_track=True, value=40, min=0.5, max=80, value_track_color=[1, 0, 0, 1])
         self.add_widget(self.sensitivitySlider)
 
         self.add_widget(Label(text='Test Area:'))
@@ -43,7 +43,6 @@ class MainScreen(GridLayout):
             self.dataReader.toggleEnabledButton()
             self.enableButton.text = 'Click here to stop the sensor' if self.dataReader.enabled else 'Click here to start the sensor'
             self.enableButton.background_color = (255,0,0, .3) if self.dataReader.enabled else (0, 255, 0, 0.3)
-
 
         def OnSliderValueChange(instance, value):
             sensitivityLabel.text = "Sensitivity (now: " + str(value) + ")"
