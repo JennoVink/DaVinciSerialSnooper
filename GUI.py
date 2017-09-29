@@ -264,17 +264,26 @@ class DataReader:
                 self.state = 1
                 print('E door hoek')
         else:
-            if angularVelocity > self.rotationSensitivity * self.rotationSensitivityFactor
+            if angularVelocity > self.rotationSensitivity * self.rotationSensitivityFactor or \
+                            angularVelocity < -self.rotationSensitivity * self.rotationSensitivityFactor:
+                self.state = 2
+                win32api.keybd_event(self.leftKey, 0, win32con.KEYEVENTF_KEYUP, 0)
+                win32api.keybd_event(self.rightKey, 0, win32con.KEYEVENTF_KEYUP, 0)
+                print("N door snelheid")
+            elif degrees < -self.neutralZoneDegrees or degrees > self.neutralZoneDegrees:
+                self.state = 2
+                win32api.keybd_event(self.leftKey, 0, win32con.KEYEVENTF_KEYUP, 0)
+                win32api.keybd_event(self.rightKey, 0, win32con.KEYEVENTF_KEYUP, 0)
+                print("N door hoek")
 
-
-            if ((degrees < -self.neutralZoneDegrees and angularVelocity > self.rotationSensitivity * self.rotationSensitivityFactor)
-                or (degrees > self.neutralZoneDegrees and angularVelocity < -self.rotationSensitivity * self.rotationSensitivityFactor)
-                or (abs(degrees) < self.neutralZoneDegrees)
-            ):
-            self.state = 2
-            win32api.keybd_event(self.leftKey, 0, win32con.KEYEVENTF_KEYUP, 0)
-            win32api.keybd_event(self.rightKey, 0, win32con.KEYEVENTF_KEYUP, 0)
-            print("N")
+            #
+            # if ((degrees < -self.neutralZoneDegrees and angularVelocity > self.rotationSensitivity * self.rotationSensitivityFactor)
+            #     or (degrees > self.neutralZoneDegrees and angularVelocity < -self.rotationSensitivity * self.rotationSensitivityFactor)
+            #     or (abs(degrees) < self.neutralZoneDegrees)):
+            #     self.state = 2
+            #     win32api.keybd_event(self.leftKey, 0, win32con.KEYEVENTF_KEYUP, 0)
+            #     win32api.keybd_event(self.rightKey, 0, win32con.KEYEVENTF_KEYUP, 0)
+            #     print("N")
 
         self.neutralZoneDegrees -= self.zeroPointDegrees
 
