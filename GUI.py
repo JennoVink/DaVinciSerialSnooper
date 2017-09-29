@@ -249,19 +249,28 @@ class DataReader:
         # add a sort of offset with the neutralZone.
         self.neutralZoneDegrees += self.zeroPointDegrees
 
-        if degrees < -self.neutralZoneDegrees and angularVelocity < -self.rotationSensitivity and self.state == 2:
-            self.state = 0
-            print("Q")
+        if self.state == 2:
+            if angularVelocity < -self.rotationSensitivity:
+                self.state = 0
+                print('Q door snelheid')
+            elif degrees < -self.neutralZoneDegrees:
+                self.state = 0
+                print('Q door hoek')
 
-        if degrees > self.neutralZoneDegrees and angularVelocity > self.rotationSensitivity and self.state == 2:
-            self.state = 1
-            print("E")
+            if angularVelocity > self.rotationSensitivity:
+                self.state = 1
+                print('E door snelheid')
+            elif degrees > self.neutralZoneDegrees:
+                self.state = 1
+                print('E door hoek')
+        else:
+            if angularVelocity > self.rotationSensitivity * self.rotationSensitivityFactor
 
-        if ((degrees < -self.neutralZoneDegrees and angularVelocity > self.rotationSensitivity * self.rotationSensitivityFactor)
+
+            if ((degrees < -self.neutralZoneDegrees and angularVelocity > self.rotationSensitivity * self.rotationSensitivityFactor)
                 or (degrees > self.neutralZoneDegrees and angularVelocity < -self.rotationSensitivity * self.rotationSensitivityFactor)
                 or (abs(degrees) < self.neutralZoneDegrees)
-            ) \
-                and self.state != 2:
+            ):
             self.state = 2
             win32api.keybd_event(self.leftKey, 0, win32con.KEYEVENTF_KEYUP, 0)
             win32api.keybd_event(self.rightKey, 0, win32con.KEYEVENTF_KEYUP, 0)
