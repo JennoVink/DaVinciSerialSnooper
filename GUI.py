@@ -50,7 +50,7 @@ class MainScreen(GridLayout):
         # Zero Area size slider
         zeroAreaLabel = Label(text='Zero area size (now: 0.5')
         self.add_widget(zeroAreaLabel)
-        self.zeroAreaSlider = Slider(value_track=True, value=.5, min=0.5, max=5, value_track_color=[1, 0, 0, 1])
+        self.zeroAreaSlider = Slider(value_track=True, value=2, min=0.5, max=5, value_track_color=[1, 0, 0, 1])
         self.add_widget(self.zeroAreaSlider)
 
         # create a dropdown with 10 buttons
@@ -230,7 +230,7 @@ class DataReader:
         if len(data) == 1:
             return
 
-        print(data)
+        # print(data)
         self.lastInput = data
 
         gForceZ = 0.0
@@ -238,27 +238,27 @@ class DataReader:
         degrees = 0.0
         try:
             gForceZ = float(data[0])
-            angularVelocity = float(data[1][:-3])
+            angularVelocity = -float(data[1][:-3])
             if 1 >= gForceZ >= -1:
                 degrees = math.degrees(math.asin(gForceZ))
         except:
             return
 
-        print(degrees)
+        print(gForceZ, angularVelocity, degrees)
 
         # add a sort of offset with the neutralZone.
         self.neutralZoneDegrees += self.zeroPointDegrees
 
-        if degrees < -self.neutralZoneDegrees and angularVelocity > self.rotationSensitivity and self.state == 2:
+        if degrees < -self.neutralZoneDegrees and angularVelocity < -self.rotationSensitivity and self.state == 2:
             self.state = 0
             print("Q")
 
-        if degrees > self.neutralZoneDegrees and angularVelocity < -self.rotationSensitivity and self.state == 2:
+        if degrees > self.neutralZoneDegrees and angularVelocity > self.rotationSensitivity and self.state == 2:
             self.state = 1
             print("E")
 
-        if ((degrees < -self.neutralZoneDegrees and angularVelocity < -self.rotationSensitivity * self.rotationSensitivityFactor)
-                or (degrees > self.neutralZoneDegrees and angularVelocity > self.rotationSensitivity * self.rotationSensitivityFactor)
+        if ((degrees < -self.neutralZoneDegrees and angularVelocity > self.rotationSensitivity * self.rotationSensitivityFactor)
+                or (degrees > self.neutralZoneDegrees and angularVelocity < -self.rotationSensitivity * self.rotationSensitivityFactor)
                 or (abs(degrees) < self.neutralZoneDegrees)
             ) \
                 and self.state != 2:
