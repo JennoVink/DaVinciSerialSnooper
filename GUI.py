@@ -1,3 +1,4 @@
+import copy
 import kivy
 kivy.require('1.0.6') # replace with your current kivy version !
 
@@ -7,18 +8,19 @@ from kivy.uix.label import Label
 from kivy.uix.slider import Slider
 from kivy.uix.button import Button
 from kivy.uix.dropdown import DropDown
+from kivy.uix.textinput import TextInput
 
 import math
 
 import serial
 import serial.tools.list_ports
 
-import ctypes
-
 import win32api
 import win32con
 import time
 import threading
+
+
 
 
 class MainScreen(GridLayout):
@@ -34,30 +36,23 @@ class MainScreen(GridLayout):
 
         self.cols = 2
 
-        self.button = Button(text='Click here to set the zero-point', font_size=14)
-        self.add_widget(self.button)
+        self.recordButton = Button(text='Click here to record a new gesture.', font_size=14)
+        self.add_widget(self.recordButton)
 
         self.enableButton = Button(text='Click here to stop the sensor', font_size=14)
         self.enableButton.background_color = (255,0,0, .3)
         self.add_widget(self.enableButton)
 
         # self.cols = 2
-        sensitivityLabel = Label(text='Sensitivity (now: 60')
-        self.add_widget(sensitivityLabel)
+        inputBoxName = TextInput(text='Name for the new gesture')
+        self.add_widget(inputBoxName)
+        self.recognizeButton = Button(text='Recognize!')
+        self.add_widget(self.recognizeButton)
+
+        sensetivityLabel = Label(text='sensetivity')
+        self.add_widget(sensetivityLabel)
         self.sensitivitySlider = Slider(value_track=True, value=60, min=0.5, max=80, value_track_color=[1, 0, 0, 1])
         self.add_widget(self.sensitivitySlider)
-
-        # Zero Area size slider
-        zeroAreaLabel = Label(text='Zero area size (now: 3')
-        self.add_widget(zeroAreaLabel)
-        self.zeroAreaSlider = Slider(value_track=True, value=3, min=0.5, max=15, value_track_color=[1, 0, 0, 1])
-        self.add_widget(self.zeroAreaSlider)
-
-        # zero point bigness
-        self.rotationArea = Label(text='Angle')
-        self.add_widget(self.rotationArea)
-        self.rotationRatioSlider = Slider(value_track=True, value=15, min=5, max=30, value_track_color=[1, 0, 0, 1])
-        self.add_widget(self.rotationRatioSlider)
 
         # create a dropdown with 10 buttons
         self.dropdown = DropDown()
@@ -111,8 +106,11 @@ class MainScreen(GridLayout):
         self.rightKeyDropdownButton.bind(on_release=self.rightKeyDropdown.open)
 
 
-        def setZeroPoint(instance):
-            self.dataReader.setZeroPointDegrees(self)
+        def recordGesture(instance):
+            self.dataReader.recordGesture(gestureName=inputBoxName.text)
+
+        def recognizeGesture(instance):
+            self.dataReader.recognizeGesture()
 
         def toggleSensor(instance):
             self.dataReader.toggleEnabledButton()
@@ -120,16 +118,8 @@ class MainScreen(GridLayout):
             self.enableButton.background_color = (255,0,0, .3) if self.dataReader.enabled else (0, 255, 0, 0.3)
 
         def OnSliderValueChange(instance, value):
-            sensitivityLabel.text = "Sensitivity (now: " + str(value) + ")"
+            sensetivityLabel.text = "Sensitivity (now: " + str(value) + ")"
             self.dataReader.updateSensitivity(79.5 - value)
-
-        def OnZeroAreaSliderValueChange(instance, value):
-            zeroAreaLabel.text = "Zero area size (now: " + str(value) + ")"
-            self.dataReader.updateZeroArea(value)
-
-        def OnRatioSliderChange(instance, value):
-            self.rotationArea.text = "Angle (now: " + str(value) + ")"
-            self.dataReader.updateSensitivityFactor(value)
 
         def comPortChanged(instance, value):
             self.mainbutton.text = value
@@ -144,9 +134,8 @@ class MainScreen(GridLayout):
             self.dataReader.remapButton('right', self.VK_CODE[value])
 
         self.sensitivitySlider.bind(value=OnSliderValueChange)
-        self.rotationRatioSlider.bind(value=OnRatioSliderChange)
-        self.button.bind(on_press=setZeroPoint)
-        self.zeroAreaSlider.bind(value=OnZeroAreaSliderValueChange)
+        self.recordButton.bind(on_press=recordGesture)
+        self.recognizeButton.bind(on_press=recognizeGesture)
         self.enableButton.bind(on_press=toggleSensor)
         self.dropdown.bind(on_select=comPortChanged)
         self.leftKeyDropdown.bind(on_select=leftButtonChanged)
@@ -158,17 +147,6 @@ class MainScreen(GridLayout):
 class DataReader:
     # config / callibration variables
     def __init__(self):
-        self.rotationSensitivity = 40.0
-
-        # The zone in degrees around the zeroPointDegrees when nothing is triggerd.
-        self.neutralZoneDegrees = 2.0
-
-        self.zeroPointDegrees = 0
-
-        # The factor how fast the inbound event needs to be triggerd
-        # So you don't have to move back at fast as the inbound.
-        self.rotationSensitivityFactor = 15
-
         self.state = 3
         self.lastInput = None
         self.enabled = True
@@ -177,6 +155,11 @@ class DataReader:
         self.rightKey = 0x45
 
         self.lastComport = None
+
+        self.gestures = {}
+        self.recordedData = []
+        self.recording = True
+        self.isRecognizing = False
 
         t = threading.Thread(target=self.startLoop)
         t.start()
@@ -197,27 +180,18 @@ class DataReader:
             print('connection is opened successfully')
 
 
-    def setZeroPointDegrees(self, value):
-        if self.lastInput == None:
-            print('There is no input generated at all by the sensor... Exiting')
-            return
+    def recordGesture(self, gestureName):
+        if not self.recording:
+            self.recordedData.clear()
         else:
-            self.zeroPointDegrees = math.degrees(math.asin(float(self.lastInput[0])))
+            # if the gesure is not already recognized
+            if not len(self.gestures.get(gestureName, {})):
+                self.gestures[gestureName] = {}
 
+            self.gestures[gestureName][len(self.gestures[gestureName]) + 1] = self.processRecordedData(self.recordedData)
 
-        gForceZ = 0.0
-        angularVelocity = 0.0
-        degrees = 0.0
-        try:
-            gForceZ = float(self.lastInput[0])
-            angularVelocity = float(self.lastInput[1][:-3])
-            if gForceZ <= 1 and gForceZ >= -1:
-                degrees = math.degrees(math.asin(gForceZ))
-        except:
-            return
-
-        self.zeroPointDegrees = degrees
-        # print(self.zeroPointDegrees)
+            print(self.gestures)
+        self.recording = not self.recording
 
     def updateState(self):
         if not self.enabled or not hasattr(self, 'serialStream') or self.serialStream is None:
@@ -227,83 +201,47 @@ class DataReader:
         if not self.serialStream.is_open:
             return
 
-        data = self.serialStream.readline().decode('ascii').split('X')
-        if len(data) == 1:
+        if not self.recording and not self.isRecognizing:
             return
+
+        data = self.serialStream.readline().decode('ascii').split('\t')
+
+        if len(data) != 6:
+            return
+
+        # remove the \r\n
+        data[-1] = data[-1][:-3]
+
+        data = [float(sensorValue) for sensorValue in data]
+
+        self.lastInput = data
+        self.recordedData.append(data)
+
+        if self.isRecognizing:
+            gesturesCopy = copy.deepcopy(self.gestures)
+
+            for gestureName, thresholds in gesturesCopy.items():
+                i = 0;
+                for key, thresholdDataSet in thresholds.items():
+                    print(':::::thresholddataset:::::')
+                    print(thresholdDataSet)
+                    for key, thresholds in thresholdDataSet.items():
+                        for threshold in thresholds:
+                            print(threshold)
+
+                            None
+                            # if threshold[0] == '<':
+                            #     if data[i] > threshold[1]:
+                            #         # better remove from dict.
+                            #         break
+                            # else:
+                            #     if data[i] < threshold[1]:
+                            #         break
+
+                i += 1
+
 
         # print(data)
-        self.lastInput = data
-
-        gForceZ = 0.0
-        angularVelocity = 0.0
-        degrees = 0.0
-        try:
-            gForceZ = float(data[0])
-            angularVelocity = -1 * (float(data[1][:-3]))
-            if 1 >= gForceZ >= -1:
-                degrees = math.degrees(math.asin(gForceZ)) - self.zeroPointDegrees
-        except:
-            return
-
-        # print(degrees)
-        # print(angularVelocity)
-        position = 0
-        rotation = 0
-
-        # checking for zone and direction
-        if degrees < -self.neutralZoneDegrees and degrees > - self.rotationSensitivityFactor:
-            position = -1
-        elif degrees > self.neutralZoneDegrees and degrees < self.rotationSensitivityFactor:
-            position = 1
-        elif abs(degrees) < self.neutralZoneDegrees:
-            position = 0
-        else:
-            position = 3
-
-        if angularVelocity < -self.rotationSensitivity:
-            rotation = -1
-        elif angularVelocity > self.rotationSensitivity:
-            rotation = 1
-        else:
-            rotation = 0
-
-        # position based trigger
-        if position == 0 and self.state != 0:       # do N
-            self.state = 0
-            win32api.keybd_event(self.leftKey, 0, win32con.KEYEVENTF_KEYUP, 0)
-            win32api.keybd_event(self.rightKey, 0, win32con.KEYEVENTF_KEYUP, 0)
-            print("pos N")
-            print(degrees)
-            print(angularVelocity)
-        if degrees < -self.rotationSensitivityFactor and self.state != -1:     # do Q
-            self.state = -1
-            print("pos Q")
-            print(degrees)
-            print(angularVelocity)
-        if degrees > self.rotationSensitivityFactor and self.state != 1:      # do E
-            self.state = 1
-            print("posE")
-            print(degrees)
-            print(angularVelocity)
-
-        # movement based trigger
-        if ((rotation == 1 and position == -1) or (rotation == -1 and position == 1)) and self.state != 0:   # do N
-            self.state = 0
-            win32api.keybd_event(self.leftKey, 0, win32con.KEYEVENTF_KEYUP, 0)
-            win32api.keybd_event(self.rightKey, 0, win32con.KEYEVENTF_KEYUP, 0)
-            print("move N")
-            print(degrees)
-            print(angularVelocity)
-        if rotation == 1 and position == 1 and self.state != 1:         # do E
-            self.state = 1
-            print("move E")
-            print(degrees)
-            print(angularVelocity)
-        if rotation == -1 and position == -1 and self.state != -1:      # do Q
-            self.state = -1
-            print("move Q")
-            print(degrees)
-            print(angularVelocity)
 
     def startLoop(self):
         time.sleep(3)
@@ -342,6 +280,38 @@ class DataReader:
         elif self.serialStream.is_open and self.enabled == False:
             self.serialStream.close()
             print(self.enabled)
+
+    # process the recorded data and
+    def processRecordedData(self, recordedData):
+        deviationFactor = 1
+        thresholdValues = {}
+        print('----------')
+        print(recordedData[0])
+        print(recordedData[-1])
+
+        i = 0
+        for recordedDatasetStart in recordedData[0]:
+            limit = recordedData[-1][i] * deviationFactor
+            if recordedDatasetStart >= recordedData[-1][i]:
+                thresholdValues[i] = {}
+                thresholdValues[i]['<'] = limit
+
+            else:
+                thresholdValues[i] = {}
+                thresholdValues[i]['>'] = limit
+
+            i += 1
+
+        # print('---------- Thresholds from process recorded data -----')
+        #
+        # print(thresholdValues)
+        # print('//////// Thresholds -----')
+
+        return thresholdValues
+
+    def recognizeGesture(self):
+        self.isRecognizing = not self.isRecognizing
+
 
 class SerialSnooperApp(App):
     def build(self):
