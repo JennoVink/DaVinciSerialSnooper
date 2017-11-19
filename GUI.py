@@ -148,7 +148,6 @@ class DataReader:
     # config / callibration variables
     def __init__(self):
         self.state = 3
-        self.lastInput = None
         self.enabled = True
 
         self.leftKey = 0x51
@@ -158,8 +157,12 @@ class DataReader:
 
         self.gestures = {}
         self.recordedData = []
-        self.recording = True
+        for i in range(0, 6):
+            self.recordedData.append([])
+
+        self.recording = False
         self.isRecognizing = False
+        self.previousGesture = ""
 
         t = threading.Thread(target=self.startLoop)
         t.start()
@@ -183,7 +186,13 @@ class DataReader:
     def recordGesture(self, gestureName):
         if not self.recording:
             self.recordedData.clear()
+            for i in range(0, 6):
+                self.recordedData.append([])
         else:
+            if self.processRecordedData(self.recordedData) == None:
+                print('Can not record gesture, processRecordedData returns None.')
+                return
+
             # if the gesure is not already recognized
             if not len(self.gestures.get(gestureName, {})):
                 self.gestures[gestureName] = {}
@@ -204,7 +213,7 @@ class DataReader:
         if not self.recording and not self.isRecognizing:
             return
 
-        data = self.serialStream.readline().decode('ascii').split('\t')
+        data = self.serialStream.readline().decode('ascii',errors='ignore').split('\t')
 
         if len(data) != 6:
             return
@@ -212,36 +221,52 @@ class DataReader:
         # remove the \r\n
         data[-1] = data[-1][:-3]
 
-        data = [float(sensorValue) for sensorValue in data]
+        # print(data)
 
-        self.lastInput = data
-        self.recordedData.append(data)
+        for i in range(0, 6):
+            try:
+                data[i] = float(data[i])
+            except ValueError:
+                return
+            self.recordedData[i].append(data[i])
 
         if self.isRecognizing:
+            # print('---------------------')
             gesturesCopy = copy.deepcopy(self.gestures)
+            gesturesCopy2 = copy.deepcopy(self.gestures)
+
+            # print('gesture copy: ')
+            # print(gesturesCopy2)
 
             for gestureName, thresholds in gesturesCopy.items():
-                i = 0;
+                i = 0
                 for key, thresholdDataSet in thresholds.items():
-                    print(':::::thresholddataset:::::')
-                    print(thresholdDataSet)
-                    for key, thresholds in thresholdDataSet.items():
-                        for threshold in thresholds:
-                            print(threshold)
-
-                            None
-                            # if threshold[0] == '<':
-                            #     if data[i] > threshold[1]:
-                            #         # better remove from dict.
-                            #         break
-                            # else:
-                            #     if data[i] < threshold[1]:
-                            #         break
+                    # print(':::::thresholddataset:::::')
+                    # print(thresholdDataSet)
+                    for key2, threshold in thresholdDataSet.items():
+                        condition = list(threshold.keys())[0]
+                        thresholdValue = list(threshold.values())[0]
+                        if condition == '<':
+                            if data[i] > thresholdValue:
+                                # better remove from dict.
+                                # print('going to remove this one: ')
+                                if gestureName in gesturesCopy2.keys():
+                                    gesturesCopy2[gestureName][key].clear()
+                                    if all(value == {} for value in gesturesCopy2[gestureName].values()):
+                                        gesturesCopy2.pop(gestureName)
 
                 i += 1
+                print(gesturesCopy2)
+                # print('-----------////----------')
 
+                # print('found the following gesture: ----')
+                if len(gesturesCopy2.keys()) == 1:
+                    currentGesture = list(gesturesCopy2.keys())[0];
+                    if(self.previousGesture != currentGesture):
+                        print(currentGesture)
+                        self.previousGesture = currentGesture;
 
-        # print(data)
+                # print(data)
 
     def startLoop(self):
         time.sleep(3)
@@ -283,29 +308,25 @@ class DataReader:
 
     # process the recorded data and
     def processRecordedData(self, recordedData):
-        deviationFactor = 1
-        thresholdValues = {}
-        print('----------')
-        print(recordedData[0])
-        print(recordedData[-1])
+        print('---recorded data:----')
+        print(recordedData)
 
-        i = 0
-        for recordedDatasetStart in recordedData[0]:
-            limit = recordedData[-1][i] * deviationFactor
-            if recordedDatasetStart >= recordedData[-1][i]:
+        if not len(recordedData[0]):
+            print ('There is no recorded data yet.')
+            return
+        deviationFactor = 0.95
+        thresholdValues = {}
+
+        for i in range(0, len(recordedData)):
+            # limit = recordedData[-1][i] * deviationFactor
+            if recordedData[i][0] >= recordedData[i][-1]:
+                limit = max(recordedData[i]) * deviationFactor
                 thresholdValues[i] = {}
                 thresholdValues[i]['<'] = limit
-
             else:
+                limit = min(recordedData[i]) * deviationFactor
                 thresholdValues[i] = {}
                 thresholdValues[i]['>'] = limit
-
-            i += 1
-
-        # print('---------- Thresholds from process recorded data -----')
-        #
-        # print(thresholdValues)
-        # print('//////// Thresholds -----')
 
         return thresholdValues
 
