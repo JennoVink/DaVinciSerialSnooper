@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b2440d10-222a-4a43-b264-599210c747c6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GUI.py" afterPath="$PROJECT_DIR$/GUI.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,16 +13,18 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/serialSnooper$SerialSnooper.coverage" NAME="SerialSnooper Coverage Results" MODIFIED="1505744050348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/serialSnooper$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1506684192356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/serialSnooper$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1516818220925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file leaf-file-name="GUI.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GUI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="809">
-              <caret line="350" column="28" lean-forward="false" selection-start-line="350" selection-start-column="28" selection-end-line="350" selection-end-column="28" />
-              <folding />
+            <state relative-caret-position="210">
+              <caret line="268" column="26" lean-forward="true" selection-start-line="268" selection-start-column="26" selection-end-line="268" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -40,42 +41,45 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>touch</find>
-      <find>thrG</find>
-      <find>self.thrG</find>
-      <find>self.enable</find>
-      <find>enableButton</find>
-      <find>down</find>
-      <find>win32api.keybd_event</find>
-      <find>keymap</find>
-      <find>dropdown</find>
-      <find>mainbutton</find>
-      <find>self.mainbutton</find>
-      <find>bytes(</find>
-      <find>accellOffset</find>
-      <find>setZeroPointDegrees</find>
-      <find>setZeroPoint</find>
-      <find>zeroPointDegrees</find>
-      <find>angularSpeed</find>
-      <find>comport</find>
+      <find>OnRatioSliderChange</find>
+      <find>slider</find>
+      <find>inputBoxName</find>
+      <find>inputboxname</find>
+      <find>inputbox</find>
       <find>sensitivitySlider</find>
-      <find>rotationArea</find>
-      <find>initSerialPort</find>
-      <find>UpdateState</find>
-      <find>something</find>
-      <find>thread</find>
-      <find>self.mutex</find>
-      <find>open</find>
-      <find>serialStream</find>
-      <find>VK_CODE</find>
-      <find>zeropoint</find>
-      <find>neutralZoneDegrees</find>
+      <find>= !</find>
+      <find>recording</find>
+      <find>comPortChanged</find>
+      <find>recordGesture</find>
+      <find>gestures</find>
+      <find>processRecordedData</find>
+      <find>name</find>
+      <find>-5.0</find>
+      <find>record</find>
+      <find>recogniz</find>
+      <find>self.recordedData</find>
+      <find>name for the new gesture</find>
+      <find>found</find>
+      <find>.clear(</find>
+      <find>factor</find>
+      <find>name for the new gesture 2</find>
+      <find>thresholds</find>
+      <find>recordedData</find>
+      <find>isrecog</find>
+      <find>ascii</find>
+      <find>unicode</find>
+      <find>\{\'Name for the new gesture\'\: \{1\: \{0\: \{\}\, 1\: \{\'\&gt;\'\: 0\.14\}\, 2\: \{\}\, 3\: \{\'\&gt;\'\: 0\.03\}\, 4\: \{\'\&gt;\'\: 0\.01\}\, 5\: \{\'\&gt;\'\: 0\.0\}\}\, 2\: \{0\: \{\'\&gt;\'\: \-31\.958\}\, 1\: \{\'\&gt;\'\: \-24\.8615\}\, 2\: \{\'\&lt;\'\: 14\.107499999999998\}\, 3\: \{\}\, 4\: \{\'\&gt;\'\: \-0\.1615\}\, 5\: \{\}\}\, 3\: \{0\: \{\'\&gt;\'\: \-104\.3765\}\, 1\: \{\'\&lt;\'\: 237\.62349999999998\}\, 2\: \{\'\&lt;\'\: 129\.33299999999997\}\, 3\: \{\'\&gt;\'\: \-0\.95\}\, 4\: \{\'\&gt;\'\: \-0\.0475\}\, 5\: \{\'\&gt;\'\: \-0\.19\}\}\, 4\: \{0\: \{\'\&gt;\'\: \-159\.63799999999998\}\, 1\: \{\'\&gt;\'\: \-237\.63299999999998\}\, 2\: \{\'\&lt;\'\: 229\.482\}\, 3\: \{\'\&gt;\'\: \-0\.836\}\, 4\: \{\}\, 5\: \{\'\&gt;\'\: 0\.19\}\}\}\, \'Name for the new gesture 2\'\: \{1\: \{0\: \{\'\&lt;\'\: 167\.47549999999998\}\, 1\: \{\'\&lt;\'\: 208\.21149999999997\}\, 2\: \{\'\&gt;\'\: \-93\.157\}\, 3\: \{\'\&gt;\'\: \-0\.874\}\, 4\: \{\}\, 5\: \{\}\}\, 2\: \{0\: \{\'\&gt;\'\: \-176\.7285\}\, 1\: \{\'\&lt;\'\: 231\.11599999999999\}\, 2\: \{\'\&lt;\'\: 122\.91099999999999\}\, 3\: \{\}\, 4\: \{\}\, 5\: \{\'\&gt;\'\: \-0\.19\}\}\, 3\: \{0\: \{\'\&lt;\'\: 237\.62349999999998\}\, 1\: \{\'\&lt;\'\: 231\.98049999999998\}\, 2\: \{\'\&lt;\'\: 27\.569\}\, 3\: \{\}\, 4\: \{\'\&gt;\'\: \-0\.133\}\, 5\: \{\}\}\, 4\: \{0\: \{\'\&gt;\'\: \-206\.2545\}\, 1\: \{\'\&lt;\'\: 237\.62349999999998\}\, 2\: \{\'\&lt;\'\: 34\.3235\}\, 3\: \{\'\&gt;\'\: \-0\.27549999999999997\}\, 4\: \{\}\, 5\: \{\}\}\}\}\n\[26\.26\, 133\.51\, \-13\.45\, 0\.89\, 0\.11\, 0\.7\]\nfound the following gesture\: \-\-\-\-\n\{\'Name for the new gesture\'\: \{1\: \{0\: \{\}\, 1\: \{\'\&gt;\'\: 0\.14\}\, 2\: \{\}\, 3\: \{\'\&gt;\'\: 0\.03\}\, 4\: \{\'\&gt;\'\: 0\.01\}\, 5\: \{\'\&gt;\'\: 0\.0\}\}\, 2\: \{0\: \{\'\&gt;\'\: \-31\.958\}\, 1\: \{\'\&gt;\'\: \-24\.8615\}\, 2\: \{\}\, 3\: \{\}\, 4\: \{\'\&gt;\'\: \-0\.1615\}\, 5\: \{\}\}\, 3\: \{0\: \{\'\&gt;\'\: \-104\.3765\}\, 1\: \{\'\&lt;\'\: 237\.62349999999998\}\, 2\: \{\'\&lt;\'\: 129\.33299999999997\}\, 3\: \{\'\&gt;\'\: \-0\.95\}\, 4\: \{\'\&gt;\'\: \-0\.0475\}\, 5\: \{\'\&gt;\'\: \-0\.19\}\}\, 4\: \{0\: \{\'\&gt;\'\: \-159\.63799999999998\}\, 1\: \{\'\&gt;\'\: \-237\.63299999999998\}\, 2\: \{\'\&lt;\'\: 229\.482\}\, 3\: \{\'\&gt;\'\: \-0\.836\}\, 4\: \{\}\, 5\: \{\'\&gt;\'\: 0\.19\}\}\}\, \'Name for the new gesture 2\'\: \{1\: \{0\: \{\'\&lt;\'\: 167\.47549999999998\}\, 1\: \{\'\&lt;\'\: 208\.21149999999997\}\, 2\: \{\'\&gt;\'\: \-93\.157\}\, 3\: \{\'\&gt;\'\: \-0\.874\}\, 4\: \{\}\, 5\: \{\}\}\, 2\: \{0\: \{\'\&gt;\'\: \-176\.7285\}\, 1\: \{\'\&lt;\'\: 231\.11599999999999\}\, 2\: \{\'\&lt;\'\: 122\.91099999999999\}\, 3\: \{\}\, 4\: \{\}\, 5\: \{\'\&gt;\'\: \-0\.19\}\}\, 3\: \{0\: \{\'\&lt;\'\: 237\.62349999999998\}\, 1\: \{\'\&lt;\'\: 231\.98049999999998\}\, 2\: \{\'\&lt;\'\: 27\.569\}\, 3\: \{\}\, 4\: \{\'\&gt;\'\: \-0\.133\}\, 5\: \{\}\}\, 4\: \{0\: \{\'\&gt;\'\: \-206\.2545\}\, 1\: \{\'\&lt;\'\: 237\.62349999999998\}\, 2\: \{\'\&lt;\'\: 34\.3235\}\, 3\: \{\'\&gt;\'\: \-0\.27549999999999997\}\, 4\: \{\}\, 5\: \{\}\}\}\}\n\[41\.52\, 156\.11\, \-24\.02\, 0\.89\, 0\.12\, 0\.7\]\nfound the following gesture\: \-\-\-\-\n\{\'Name for the new gesture\'\: \{1\: \{0\: \{\}\, 1\: \{\'\&gt;\'\: 0\.14\}\, 2\: \{\}\, 3\: \{\'\&gt;\'\: 0\.03\}\, 4\: \{\'\&gt;\'\: 0\.01\}\, 5\: \{\'\&gt;\'\: 0\.0\}\}\, 2\: \{0\: \{\'\&gt;\'\: \-31\.958\}\, 1\: \{\'\&gt;\'\: \-24\.8615\}\, 2\: \{\}\, 3\: \{\}\, 4\: \{\'\&gt;\'\: \-0\.1615\}\, 5\: \{\}\}\, 3\: \{0\: \{\'\&gt;\'\: \-104\.3765\}\, 1\: \{\'\&lt;\'\: 237\.62349999999998\}\, 2\: \{\'\&lt;\'\: 129\.33299999999997\}\, 3\: \{\'\&gt;\'\: \-0\.95\}\, 4\: \{\'\&gt;\'\: \-0\.0475\}\, 5\: \{\'\&gt;\'\: \-0\.19\}\}\, 4\: \{0\: \{\'\&gt;\'\: \-159\.63799999999998\}\, 1\: \{\'\&gt;\'\: \-237\.63299999999998\}\, 2\: \{\'\&lt;\'\: 229\.482\}\, 3\: \{\'\&gt;\'\: \-0\.836\}\, 4\: \{\}\, 5\: \{\'\&gt;\'\: 0\.19\}\}\}\, \'Name for the new gesture 2\'\: \{1\: \{0\: \{\'\&lt;\'\: 167\.47549999999998\}\, 1\: \{\'\&lt;\'\: 208\.21149999999997\}\, 2\: \{\'\&gt;\'\: \-93\.157\}\, 3\: \{\'\&gt;\'\: \-0\.874\}\, 4\: \{\}\, 5\: \{\}\}\, 2\: \{0\: \{\'\&gt;\'\: \-176\.7285\}\, 1\: \{\'\&lt;\'\: 231\.11599999999999\}\, 2\: \{\'\&lt;\'\: 122\.91099999999999\}\, 3\: \{\}\, 4\: \{\}\, 5\: \{\'\&gt;\'\: \-0\.19\}\}\, 3\: \{0\: \{\'\&lt;\'\: 237\.62349999999998\}\, 1\: \{\'\&lt;\'\: 231\.98049999999998\}\, 2\: \{\}\, 3\: \{\}\, 4\: \{\'\&gt;\'\: \-0\.133\}\, 5\: \{\}\}\, 4\: \{0\: \{\'\&gt;\'\: \-206\.2545\}\, 1\: \{\'\&lt;\'\: 237\.62349999999998\}\, 2\: \{\}\, 3\: \{\'\&gt;\'\: \-0\.27549999999999997\}\, 4\: \{\}\, 5\: \{\}\}\}\}\n\[60\.0\, 173\.45\, \-34\.54\, 0\.9\, 0\.13\, 0\.7\]</find>
+      <find>lastInput</find>
+      <find>going to re</find>
     </findStrings>
     <replaceStrings>
       <replace>self.state</replace>
       <replace>self.rotationSensitivity</replace>
       <replace>angularSpeed</replace>
       <replace>angularVelocity</replace>
+      <replace>recordGesture</replace>
+      <replace>self.recordButton</replace>
+      <replace>thresholdValues</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -121,6 +125,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -143,7 +148,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -232,15 +236,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.196875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23574561" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31578946" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -280,6 +283,32 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -292,7 +321,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -301,7 +330,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -309,7 +340,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -317,7 +350,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -325,7 +360,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -333,7 +370,69 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -349,7 +448,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -365,7 +466,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -373,7 +476,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -381,7 +486,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="9" selection-end-column="34" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -390,7 +497,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="924">
           <caret line="44" column="111" lean-forward="false" selection-start-line="44" selection-start-column="111" selection-end-line="44" selection-end-column="111" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -400,7 +509,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -409,7 +520,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="924">
           <caret line="44" column="105" lean-forward="false" selection-start-line="44" selection-start-column="105" selection-end-line="44" selection-end-column="105" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -418,7 +531,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -427,7 +542,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -436,7 +553,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -526,19 +645,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://E:/GUI.py">
+    <entry file="file://E:/GUI.py" />
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="350" selection-end-column="28" />
+        <state relative-caret-position="-1953">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GUI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="809">
-          <caret line="350" column="28" lean-forward="false" selection-start-line="350" selection-start-column="28" selection-end-line="350" selection-end-column="28" />
-          <folding />
+        <state relative-caret-position="210">
+          <caret line="268" column="26" lean-forward="true" selection-start-line="268" selection-start-column="26" selection-end-line="268" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
